@@ -12,10 +12,17 @@
         "hdb": "^0.18.3"
     },
     "devDependencies": {
+        "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+        "@sap/ux-specification": "^1.90.13",
+        "@sap/ux-ui5-fe-mockserver-middleware": "^1.4.5",
+        "@sap/ux-ui5-tooling": "^1.4.0",
+        "@sapui5/ts-types": "^1.92.2",
+        "eslint": "^7.32.0",
         "sqlite3": "^5.0.2"
     },
     "scripts": {
-        "start": "cds run"
+        "start": "cds run",
+        "undeploy": "cf undeploy configurator --delete-services --delete-service-keys"
     },
     "eslintConfig": {
         "extends": "eslint:recommended",
