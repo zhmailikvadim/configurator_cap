@@ -1,0 +1,273 @@
+{
+  "namespace": "app.configurator",
+  "definitions": {
+    "app.configurator.Name": {
+      "kind": "type",
+      "type": "cds.String",
+      "length": 50
+    },
+    "app.configurator.LDescription": {
+      "kind": "type",
+      "type": "cds.String",
+      "length": 500
+    },
+    "app.configurator.Kinds": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "name": {
+          "type": "app.configurator.Name",
+          "length": 50
+        },
+        "models": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "app.configurator.Models",
+          "on": [
+            {
+              "ref": [
+                "models",
+                "ID_kind"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "app.configurator.Models": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "ID_kind": {
+          "key": true,
+          "type": "cds.Association",
+          "target": "app.configurator.Kinds",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ]
+            }
+          ]
+        },
+        "name": {
+          "type": "app.configurator.Name",
+          "length": 50
+        },
+        "components": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "app.configurator.Components",
+          "on": [
+            {
+              "ref": [
+                "components",
+                "ID_model"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "app.configurator.Components": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "ID_model": {
+          "key": true,
+          "type": "cds.Association",
+          "target": "app.configurator.Models",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ]
+            },
+            {
+              "ref": [
+                "ID_kind"
+              ]
+            }
+          ]
+        },
+        "name": {
+          "type": "app.configurator.Name",
+          "length": 50
+        },
+        "description": {
+          "type": "app.configurator.LDescription",
+          "length": 500
+        }
+      }
+    },
+    "CatalogService": {
+      "@source": "configurator_srv.cds",
+      "kind": "service"
+    },
+    "CatalogService.configurator_Kinds": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "app.configurator.Kinds"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "name": {
+          "type": "app.configurator.Name",
+          "length": 50
+        },
+        "models": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CatalogService.configurator_Models",
+          "on": [
+            {
+              "ref": [
+                "models",
+                "ID_kind"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CatalogService.configurator_Models": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "app.configurator.Models"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "ID_kind": {
+          "key": true,
+          "type": "cds.Association",
+          "target": "CatalogService.configurator_Kinds",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ]
+            }
+          ]
+        },
+        "name": {
+          "type": "app.configurator.Name",
+          "length": 50
+        },
+        "components": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CatalogService.configurator_Components",
+          "on": [
+            {
+              "ref": [
+                "components",
+                "ID_model"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "CatalogService.configurator_Components": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "app.configurator.Components"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "ID_model": {
+          "key": true,
+          "type": "cds.Association",
+          "target": "CatalogService.configurator_Models",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ]
+            },
+            {
+              "ref": [
+                "ID_kind"
+              ]
+            }
+          ]
+        },
+        "name": {
+          "type": "app.configurator.Name",
+          "length": 50
+        },
+        "description": {
+          "type": "app.configurator.LDescription",
+          "length": 500
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v2.10.4",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}
