@@ -8,6 +8,7 @@ modules:
   path: srv
   requires:
   - name: configurator-db
+  - name: uaa_configurator
   provides:
   - name: srv-api
     properties:
@@ -56,9 +57,37 @@ modules:
       - configuratorfiori.zip
       name: configuratorfiori
       target-path: resources/
+    - artifacts:
+      - configuratorapp.zip
+      name: configuratorapp
+      target-path: resources/
+    - artifacts:
+      - project1.zip
+      name: project1
+      target-path: resources/
 - name: configuratorfiori
   type: html5
   path: app/configurator_fiori
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: configuratorapp
+  type: html5
+  path: app/configurator_app
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: project1
+  type: html5
+  path: app/project1
   build-parameters:
     build-result: dist
     builder: custom

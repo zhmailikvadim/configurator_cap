@@ -1,27 +1,29 @@
 {
     "name": "configurator",
     "version": "1.0.0",
-    "description": "A simple CAP project.",
+    "description": "CAP project.",
     "repository": "<Add your repository here>",
     "license": "UNLICENSED",
     "private": true,
     "dependencies": {
         "@sap/cds": "^5",
         "express": "^4",
+        "generator-easy-ui5": "^3.0.1",
         "hana-cli": "^2.202110.1",
         "hdb": "^0.18.3"
     },
     "devDependencies": {
         "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
-        "@sap/ux-specification": "^1.90.13",
+        "@sap/ux-specification": "^1.90.14",
         "@sap/ux-ui5-fe-mockserver-middleware": "^1.4.5",
-        "@sap/ux-ui5-tooling": "^1.4.0",
-        "@sapui5/ts-types": "^1.92.2",
+        "@sap/ux-ui5-tooling": "^1.4.1",
+        "@sapui5/ts-types": "^1.96.0",
         "eslint": "^7.32.0",
         "sqlite3": "^5.0.2"
     },
     "scripts": {
         "start": "cds run",
+        "devDepensies": "Comment: for production 'NODE_ENV=production cds run'",
         "undeploy": "cf undeploy configurator --delete-services --delete-service-keys"
     },
     "eslintConfig": {
@@ -60,6 +62,9 @@
         },
         "build": {
             "target": "."
+        },
+        "uaa": {
+            "kind": "xsuaa"
         }
     }
 }

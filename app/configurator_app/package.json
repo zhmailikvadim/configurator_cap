@@ -1,5 +1,5 @@
 {
-    "name": "configurator_fiori",
+    "name": "configurator_app",
     "version": "0.0.1",
     "description": "A Fiori application.",
     "keywords": [
@@ -14,8 +14,11 @@
     },
     "devDependencies": {
         "@sap/ui5-builder-webide-extension": "1.0.x",
-        "ui5-task-zipper": "^0.3.1",
-        "mbt": "^1.0.15"
+        "@sap/ux-specification": "^1.90.13",
+        "@sap/ux-ui5-fe-mockserver-middleware": "^1.4.5",
+        "@sap/ux-ui5-tooling": "^1.4.0",
+        "mbt": "^1.0.15",
+        "ui5-task-zipper": "^0.3.1"
     },
     "ui5": {
         "dependencies": [

@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "configuratorfiori",
+        "id": "configuratorapp",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -85,11 +85,11 @@
                     "name": "configurator_KindsObjectPage",
                     "target": "configurator_KindsObjectPage"
                 },
-                    {
-                        "pattern": "configurator_Kinds({key})/models({key2}):?query:",
-                        "name": "configurator_ModelsObjectPage",
-                        "target": "configurator_ModelsObjectPage"
-                    }
+                {
+                    "pattern": "configurator_Kinds({key})/models:?query:",
+                    "name": "configurator_ModelsList",
+                    "target": "configurator_ModelsList"
+                }
             ],
             "targets": {
                 "configurator_KindsList": {
@@ -103,7 +103,7 @@
                             "navigation": {
                                 "configurator_Kinds": {
                                     "detail": {
-                                        "route": "configurator_KindsObjectPage"
+                                        "route": "configurator_ModelsList"
                                     }
                                 }
                             }
@@ -116,29 +116,29 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "editableHeaderContent": false,
+                            "editableHeaderContent": true,
                             "entitySet": "configurator_Kinds",
-                                "navigation": {
-                                    "models": {
-                                        "detail": {
-                                            "route": "configurator_ModelsObjectPage"
-                                        }
+                            "navigation": {
+                                "models": {
+                                    "detail": {
+                                        "route": "configurator_ModelsList"
                                     }
                                 }
-                        }
-                    }
-                },
-                    "configurator_ModelsObjectPage": {
-                        "type": "Component",
-                        "id": "configurator_ModelsObjectPage",
-                        "name": "sap.fe.templates.ObjectPage",
-                        "options": {
-                            "settings": {
-                                "editableHeaderContent": false,
-                                "entitySet": "configurator_Models"
                             }
                         }
                     }
+                },
+                "configurator_ModelsList": {
+                    "type": "Component",
+                    "id": "configurator_ModelsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": true,
+                            "entitySet": "configurator_Models"
+                        }
+                    }
+                }
             }
         },
         "contentDensities": {

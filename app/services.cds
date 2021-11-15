@@ -1,2 +1,2 @@
 
-using from './configurator_fiori/annotations';
+using from './configurator_app/annotations';

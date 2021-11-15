@@ -1,1 +1,0 @@
-using CatalogService as service from '../../srv/configurator_srv';
