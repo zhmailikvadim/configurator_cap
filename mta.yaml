@@ -53,41 +53,14 @@ modules:
   build-parameters:
     build-result: resources
     requires:
+    - artifacts: null
     - artifacts:
-      - configuratorfiori.zip
-      name: configuratorfiori
+      - fioriapp.zip
+      name: fioriapp
       target-path: resources/
-    - artifacts:
-      - configuratorapp.zip
-      name: configuratorapp
-      target-path: resources/
-    - artifacts:
-      - project1.zip
-      name: project1
-      target-path: resources/
-- name: configuratorfiori
+- name: fioriapp
   type: html5
-  path: app/configurator_fiori
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: configuratorapp
-  type: html5
-  path: app/configurator_app
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: project1
-  type: html5
-  path: app/project1
+  path: app/fioriapp
   build-parameters:
     build-result: dist
     builder: custom

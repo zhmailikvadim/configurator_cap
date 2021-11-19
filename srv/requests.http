@@ -1,0 +1,19 @@
+###
+GET http://localhost:4004/catalog/configurator_Kinds
+
+###
+GET http://localhost:4004/catalog/configurator_Models?$expand=configurator_Components
+
+###
+GET  http://localhost:4004/catalog/configurator_Components
+
+###
+POST http://localhost:4004/catalog/configurator_Components
+Content-Type:  application/json
+
+{
+    "ID_model_ID" : "5e32b06b-3274-49ba-b4a6-b967d2cac577",
+    "name" :  "KZK-8K-0100000-01",
+    "description" : "Комбайн с классической схемой обмолота и сепарации, двигателем ЯМЗ-236НЕ2-47 мощностью 230 л.с., кабиной Lux Cab, отопителем, кондиционером, наклонной камерой, МФР,  пневмосистемой, соломоизмельчителем, без понижающего редуктора"
+}
+

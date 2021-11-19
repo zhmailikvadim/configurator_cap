@@ -4,10 +4,10 @@ COLUMN TABLE app_configurator_Components (
   createdBy NVARCHAR(255),
   LastChangedAt TIMESTAMP,
   LastChangedBy NVARCHAR(255),
-  ID NVARCHAR(36) NOT NULL,
-  ID_model_ID NVARCHAR(36),
   name NVARCHAR(50),
   description NVARCHAR(500),
+  ID NVARCHAR(36) NOT NULL,
+  ID_model_ID NVARCHAR(36),
   PRIMARY KEY(ID)
 ) WITH ASSOCIATIONS (
   MANY TO ONE JOIN app_configurator_Models AS ID_model ON (ID_model.ID = ID_model_ID)

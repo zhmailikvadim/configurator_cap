@@ -4,9 +4,9 @@ COLUMN TABLE app_configurator_Kinds (
   createdBy NVARCHAR(255),
   LastChangedAt TIMESTAMP,
   LastChangedBy NVARCHAR(255),
-  ID NVARCHAR(36) NOT NULL,
   name NVARCHAR(50),
   description NVARCHAR(500),
+  ID NVARCHAR(36) NOT NULL,
   PRIMARY KEY(ID)
 ) WITH ASSOCIATIONS (
   MANY TO MANY JOIN app_configurator_Models AS to_models ON (to_models.ID_kind_ID = ID)

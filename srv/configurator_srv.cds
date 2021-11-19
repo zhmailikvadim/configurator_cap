@@ -4,25 +4,33 @@ using app.configurator from '../db/configurator';
 service CatalogService {
 
     @odata.draft.enabled
+    //@fiori.draft.enabled
     entity configurator_Kinds @(Capabilities : {
-        InsertRestrictions : {Insertable : true},
-        UpdateRestrictions : {Updatable : true},
-        DeleteRestrictions : {Deletable : true}
-    }) as projection on configurator.Kinds;
+        Deletable  : true,
+        Insertable : true,
+        Updatable  : true,
+    }) as projection on configurator.Kinds{*,} actions {
+                              @sap.applicable.path : 'createModelEnabled'
+        action createModel();
+    };
 
     @odata.draft.enabled
+    //@fiori.draft.enabled
     entity configurator_Models @(Capabilities : {
-        InsertRestrictions : {Insertable : true},
-        UpdateRestrictions : {Updatable : true},
-        DeleteRestrictions : {Deletable : true}
-    }) as projection on configurator.Models;
+        Deletable  : true,
+        Insertable : true,
+        Updatable  : true,
+    }) as projection on configurator.Models{*,} actions {
+        action deleteModel();
+    };
 
     @odata.draft.enabled
+    //@fiori.draft.enabled
     entity configurator_Components @(Capabilities : {
-        InsertRestrictions : {Insertable : true},
-        UpdateRestrictions : {Updatable : true},
-        DeleteRestrictions : {Deletable : true}
-    }) as projection on configurator.Components;
+        Deletable  : true,
+        Insertable : true,
+        Updatable  : true,
+    }) as projection on configurator.Components {*,};
 
     function Count() returns Integer;
 

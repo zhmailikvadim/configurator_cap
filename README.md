@@ -30,3 +30,6 @@ Clear cashe:
 user: configurator $ rm -rf /home/user/.local/share/Trash/files
 user: configurator $ rm -rf /home/user/.cache
 user: configurator $ rm -rf /home/user/.npm
+
+Kill all processes
+killall -9 node

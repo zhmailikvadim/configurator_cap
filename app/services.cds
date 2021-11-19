@@ -1,2 +1,1 @@
-
-using from './configurator_app/annotations';
+using from './annotations';
