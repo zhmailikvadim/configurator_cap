@@ -495,10 +495,9 @@
     "CatalogService.configurator_Kinds": {
       "kind": "entity",
       "@odata.draft.enabled": true,
-      "@fiori.draft.enabled": true,
-      "@Capabilities.Deletable": true,
-      "@Capabilities.Insertable": true,
-      "@Capabilities.Updatable": true,
+      "@Capabilities.DeleteRestrictions.Deletable": true,
+      "@Capabilities.InsertRestrictions.Insertable": true,
+      "@Capabilities.UpdateRestrictions.Updatable": true,
       "@UI.PresentationVariant.Text": "Default",
       "@UI.PresentationVariant.Visualizations": [
         "@UI.LineItem"
@@ -556,13 +555,13 @@
         {
           "$Type": "UI.DataFieldForAction",
           "Action": "CatalogService.createModel",
-          "Label": "{i18n>CreateModel}"
+          "Label": "CreateModel"
         }
       ],
       "@UI.Facets": [
         {
           "$Type": "UI.CollectionFacet",
-          "Label": "{i18n>Booking}",
+          "Label": "Booking",
           "ID": "Kind",
           "Facets": [
             {
@@ -573,7 +572,7 @@
             },
             {
               "$Type": "UI.ReferenceFacet",
-              "Label": "{i18n>administrativeData}",
+              "Label": "administrativeData",
               "Target": "@UI.FieldGroup#AdministrativeData"
             }
           ]
@@ -581,12 +580,17 @@
         {
           "$Type": "UI.ReferenceFacet",
           "Target": "to_models/@UI.PresentationVariant",
-          "Label": "{i18n>Models}"
+          "Label": "Models"
         }
       ],
       "@UI.FieldGroup#Kind.$Type": "UI.FieldGroupType",
       "@UI.FieldGroup#Kind.Label": "Kind",
       "@UI.FieldGroup#Kind.Data": [
+        {
+          "$Type": "UI.DataFieldForAction",
+          "Action": "CatalogService.createModel",
+          "Label": "CreateModel"
+        },
         {
           "$Type": "UI.DataField",
           "Value": {
@@ -600,7 +604,7 @@
           }
         }
       ],
-      "@UI.FieldGroup#AdministrativeData.Label": "{i18n>administrativeData}",
+      "@UI.FieldGroup#AdministrativeData.Label": "administrativeData",
       "@UI.FieldGroup#AdministrativeData.Data": [
         {
           "$Type": "UI.DataField",
@@ -638,10 +642,7 @@
           "ref": [
             "app.configurator.Kinds"
           ]
-        },
-        "columns": [
-          "*"
-        ]
+        }
       },
       "elements": {
         "createdAt": {
@@ -771,10 +772,10 @@
     "CatalogService.configurator_Models": {
       "kind": "entity",
       "@odata.draft.enabled": true,
-      "@fiori.draft.enabled": true,
-      "@Capabilities.Deletable": true,
-      "@Capabilities.Insertable": true,
-      "@Capabilities.Updatable": true,
+      "@Common.DraftRoot.ActivationAction": "createModel",
+      "@Capabilities.DeleteRestrictions.Deletable": true,
+      "@Capabilities.InsertRestrictions.Insertable": true,
+      "@Capabilities.UpdateRestrictions.Updatable": true,
       "@UI.CreateHidden": false,
       "@UI.PresentationVariant.Text": "Default",
       "@UI.PresentationVariant.Visualizations": [
@@ -840,7 +841,7 @@
       "@UI.Facets": [
         {
           "$Type": "UI.CollectionFacet",
-          "Label": "{i18n>Model}",
+          "Label": "Model",
           "ID": "Model",
           "Facets": [
             {
@@ -851,7 +852,7 @@
             },
             {
               "$Type": "UI.ReferenceFacet",
-              "Label": "{i18n>administrativeData}",
+              "Label": "administrativeData",
               "Target": "@UI.FieldGroup#AdministrativeData"
             }
           ]
@@ -859,7 +860,7 @@
         {
           "$Type": "UI.ReferenceFacet",
           "Target": "to_components/@UI.PresentationVariant",
-          "Label": "{i18n>Models}"
+          "Label": "Models"
         }
       ],
       "@UI.FieldGroup#Model.$Type": "UI.FieldGroupType",
@@ -884,7 +885,7 @@
           }
         }
       ],
-      "@UI.FieldGroup#AdministrativeData.Label": "{i18n>administrativeData}",
+      "@UI.FieldGroup#AdministrativeData.Label": "administrativeData",
       "@UI.FieldGroup#AdministrativeData.Data": [
         {
           "$Type": "UI.DataField",
@@ -928,10 +929,7 @@
           "ref": [
             "app.configurator.Models"
           ]
-        },
-        "columns": [
-          "*"
-        ]
+        }
       },
       "elements": {
         "createdAt": {
@@ -1074,10 +1072,9 @@
     "CatalogService.configurator_Components": {
       "kind": "entity",
       "@odata.draft.enabled": true,
-      "@fiori.draft.enabled": true,
-      "@Capabilities.Deletable": true,
-      "@Capabilities.Insertable": true,
-      "@Capabilities.Updatable": true,
+      "@Capabilities.DeleteRestrictions.Deletable": true,
+      "@Capabilities.InsertRestrictions.Insertable": true,
+      "@Capabilities.UpdateRestrictions.Updatable": true,
       "@UI.PresentationVariant.Text": "Default",
       "@UI.PresentationVariant.Visualizations": [
         "@UI.LineItem"
@@ -1137,7 +1134,7 @@
       "@UI.Facets": [
         {
           "$Type": "UI.CollectionFacet",
-          "Label": "{i18n>Model}",
+          "Label": "Model",
           "ID": "Component",
           "Facets": [
             {
@@ -1148,7 +1145,7 @@
             },
             {
               "$Type": "UI.ReferenceFacet",
-              "Label": "{i18n>administrativeData}",
+              "Label": "administrativeData",
               "Target": "@UI.FieldGroup#AdministrativeData"
             }
           ]
@@ -1170,7 +1167,7 @@
           }
         }
       ],
-      "@UI.FieldGroup#AdministrativeData.Label": "{i18n>administrativeData}",
+      "@UI.FieldGroup#AdministrativeData.Label": "administrativeData",
       "@UI.FieldGroup#AdministrativeData.Data": [
         {
           "$Type": "UI.DataField",
@@ -1208,10 +1205,7 @@
           "ref": [
             "app.configurator.Components"
           ]
-        },
-        "columns": [
-          "*"
-        ]
+        }
       },
       "elements": {
         "createdAt": {

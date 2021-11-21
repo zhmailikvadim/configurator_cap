@@ -304,6 +304,11 @@ annotate my.configurator_Kinds with @UI : {
         Label : 'Kind',
         Data  : [
             {
+                $Type  : 'UI.DataFieldForAction',
+                Action : 'CatalogService.createModel',
+                Label  : 'CreateModel'
+            },
+            {
                 $Type : 'UI.DataField',
                 Value : name
             },

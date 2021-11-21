@@ -1,122 +1,112 @@
-_schema-version: "3.1"
+_schema-version: '3.1'
 ID: configurator
 description: Configurator service
 version: 1.0.0
 modules:
-- name: configurator-srv
-  type: nodejs
-  path: srv
-  requires:
-  - name: configurator-db
-  - name: uaa_configurator
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-- name: configurator-db-deployer
-  type: hdb
-  path: db
-  requires:
-  - name: configurator-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: app
-  type: approuter.nodejs
-  path: app
-  requires:
-  - name: configurator_html_repo_runtime
-  - name: uaa_configurator
-  - name: srv-api
-    group: destinations
-    properties:
-      forwardAuthToken: true
-      name: srv-api
-      url: ~{srv-url}
-  - name: configurator-dest-srv
-    group: destinations
-    properties:
-      forwardAuthToken: false
-      name: ui5
-      url: https://ui5.sap.com
-  parameters:
-    disk-quota: 256M
-    memory: 256M
-- name: configurator_ui_deployer
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: configurator_html_repo_host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  - name: configurator-srv
+    type: nodejs
+    path: srv
     requires:
-    - artifacts: null
-    - artifacts:
-      - fioriapp.zip
-      name: fioriapp
-      target-path: resources/
-- name: fioriapp
-  type: html5
-  path: app/fioriapp
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
+      - name: configurator-db
+      - name: uaa_configurator
+      - name: hdi-container
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: '${default-url}'
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: configurator-db-deployer
+    type: hdb
+    path: db
+    requires:
+      - name: configurator-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: app
+    type: approuter.nodejs
+    path: app
+    requires:
+      - name: configurator_html_repo_runtime
+      - name: uaa_configurator
+      - name: srv-api
+        group: destinations
+        properties:
+          forwardAuthToken: true
+          name: srv-api
+          url: '~{srv-url}'
+      - name: configurator-dest-srv
+        group: destinations
+        properties:
+          forwardAuthToken: false
+          name: ui5
+          url: 'https://ui5.sap.com'
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+  - name: configurator_ui_deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: configurator_html_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
 resources:
-- name: configurator-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-  properties:
-    hdi-service-name: ${service-name}
-- name: configurator_html_repo_runtime
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-runtime
-- name: uaa_configurator
-  type: org.cloudfoundry.managed-service
-  parameters:
-    path: ./xs-security.json
-    service: xsuaa
-    service-name: configurator-xsuaa-service
-    service-plan: application
-- name: configurator_html_repo_host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-host
-- name: configurator-dest-srv
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: false
-      init_data:
-        instance:
-          destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          existing_destinations_policy: update
-      version: 1.0.0
-    service: destination
-    service-name: configurator-dest-srv
-    service-plan: lite
+  - name: configurator-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: '${service-name}'
+  - name: configurator_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: uaa_configurator
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: configurator-xsuaa-service
+      service-plan: application
+  - name: configurator_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: configurator-dest-srv
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: 'https://ui5.sap.com'
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: configurator-dest-srv
+      service-plan: lite
+  - name: hdi-container
+    type: com.sap.xs.hdi-container
+    description: hdi-container
+  - name: ''
+    type: ''
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm install --production
-    - npx -p @sap/cds-dk cds build --production
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
